@@ -42,22 +42,36 @@ def none_value():
         print('not_null_variable is not None')
 
 
+def cube(param):
+    return param ** 3
+
+
+def triangle_area(base, height):
+    return 1/2 * base * height
+
+
+def exclaim(string, integer):
+    return string + "!" * integer
+
+
 if __name__ == '__main__':
     print_hi()
     some_stuff()
     simple_if(10)
     # stdin()
     none_value()
-    print(type(1))
-    print(type(5.3))
-    print(type(5 + 4j))
-    print(type([1, 5.3, False, 4]))
-    print(type((1, True, 3, 5 + 4j)))
-    print(type(range(5)))
-    print(type('Hello'))
-    print(type(b'a'))
-    print(type(bytearray([1, 2, 3])))
-    print(type(memoryview(bytearray('XYZ', 'utf-8'))))
-    print(type({'a', 3, True}))
-    print(type(frozenset({1, 2, 3})))
-    print(type({'a': 32}))
+    # print(type(1))
+    # print(type(5.3))
+    # print(type(5 + 4j))
+    # print(type([1, 5.3, False, 4]))
+    # print(type((1, True, 3, 5 + 4j)))
+    # print(type(range(5)))
+    # print(type('Hello'))
+    # print(type(b'a'))
+    # print(type(bytearray([1, 2, 3])))
+    # print(type(memoryview(bytearray('XYZ', 'utf-8'))))
+    # print(type({'a', 3, True}))
+    # print(type(frozenset({1, 2, 3})))
+    # print(type({'a': 32}))
+    print(cube(5))
+    print(triangle_area(5, 6))

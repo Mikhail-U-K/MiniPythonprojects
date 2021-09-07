@@ -1,63 +1,19 @@
-def print_hi():
-    print("Python is awesome!")
-    var = "first string"
-    print(var)
-    var = 2 + 9
-    print(var)
-
-
-def some_stuff():
-    print("Monty Python's flying circus")
-    print('Monty Python\'s flying circus')
-    print("String")
-    print('String')
-    print('''Str 
-    ... ing''')
-    print('Str"ing')
-
-
-def simple_if(var):
-    if var < 3:
-        print("less")
-    else:
-        print("more")
-
-
-def stdin():
-    str1 = input()
-    str2 = input()
-    print(str1 + ", " + str2)
-
-
-def none_value():
-    null_variable = None
-    not_null_variable = 'something'
-    if null_variable is None:
-        print('null_variable is None')
-    else:
-        print('null_variable is not None')
-    if not_null_variable is None:
-        print('not_null_variable is None')
-    else:
-        print('not_null_variable is not None')
-
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
 
 if __name__ == '__main__':
-    print_hi()
-    some_stuff()
-    simple_if(10)
-    # stdin()
-    none_value()
-    print(type(1))
-    print(type(5.3))
-    print(type(5 + 4j))
-    print(type([1, 5.3, False, 4]))
-    print(type((1, True, 3, 5 + 4j)))
-    print(type(range(5)))
-    print(type('Hello'))
-    print(type(b'a'))
-    print(type(bytearray([1, 2, 3])))
-    print(type(memoryview(bytearray('XYZ', 'utf-8'))))
-    print(type({'a', 3, True}))
-    print(type(frozenset({1, 2, 3})))
-    print(type({'a': 32}))
+    data_set = np.genfromtxt("wine.data", delimiter=',')
+    y = data_set[:, 0]
+    x = data_set[:, 1:]
+    # print("classes ", y)
+    # print("features ", x)
+    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    k = 1
+    while k < 51:
+        neighbors_classifier = KNeighborsClassifier(n_neighbors=k)
+        quality = cross_val_score(neighbors_classifier, x, y, cv=kf, scoring='accuracy')
+        quality_mean = np.mean(quality)
+        print("k = ", k, " ", quality_mean)
+        k += 1
